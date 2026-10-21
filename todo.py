@@ -39,6 +39,11 @@ def list_tasks():
         mark = "x" if task["done"] else " "
         print(f"{i}. [{mark}] {task['text']}")
 
+def delete_task(number):
+       tasks = load_tasks()
+       removed = tasks.pop(number - 1)
+       save_tasks(tasks)
+       print(f"Deleted: {removed['text']}")
 
 def complete_task(number):
     tasks = load_tasks()
@@ -57,7 +62,12 @@ if __name__ == "__main__":
         add_task(" ".join(sys.argv[2:]))
     elif command == "list":
         list_tasks()
+<<<<<<< HEAD
     elif command == "done":
         complete_task(int(sys.argv[2]))
+=======
+    elif command == "delete":
+           delete_task(int(sys.argv[2]))
+>>>>>>> feature/delete
     else:
         print("Unknown command")
