@@ -40,6 +40,13 @@ def list_tasks():
         print(f"{i}. [{mark}] {task['text']}")
 
 
+def complete_task(number):
+    tasks = load_tasks()
+    tasks[number - 1]["done"] = True
+    save_tasks(tasks)
+    print(f"Completed: {tasks[number - 1]['text']}")
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python todo.py add <task> | list")
@@ -50,5 +57,7 @@ if __name__ == "__main__":
         add_task(" ".join(sys.argv[2:]))
     elif command == "list":
         list_tasks()
+    elif command == "done":
+        complete_task(int(sys.argv[2]))
     else:
         print("Unknown command")
